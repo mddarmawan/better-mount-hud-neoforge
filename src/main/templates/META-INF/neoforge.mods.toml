@@ -1,0 +1,35 @@
+# Mod metadata for Better Mount HUD (NeoForge).
+
+license="${mod_license}"
+
+issueTrackerURL="https://github.com/mddarmawan/better-mount-hud-neoforge/issues"
+displayURL="https://github.com/mddarmawan/better-mount-hud-neoforge"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+credits="Original Better Mount HUD by Lortseam (https://modrinth.com/mod/better-mount-hud), GPL-3.0."
+authors="mddarmawan"
+description='''
+Repositions the vanilla HUD while riding a mount so mount health, the jump bar and the experience level are all visible together.
+
+NeoForge port of Better Mount HUD by Lortseam, licensed GPL-3.0.
+'''
+
+[[mixins]]
+config="${mod_id}.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="CLIENT"
