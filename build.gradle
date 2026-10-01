@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.148'
+    id 'com.modrinth.minotaur' version '2.+'
     id 'idea'
 }
 
@@ -181,4 +182,22 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+// Publish to Modrinth. Requires a personal access token with the CREATE_VERSION scope,
+// read from the MODRINTH_TOKEN env var or the modrinthToken property in ~/.gradle/gradle.properties.
+def modrinthToken = System.getenv("MODRINTH_TOKEN") ?: project.findProperty("modrinthToken")
+
+modrinth {
+    token = modrinthToken
+    projectId = "ZTiDShSp"
+    versionNumber = mod_version
+    versionName = "${mod_name} ${mod_version}"
+    versionType = "release"
+    uploadFile = jar
+    gameVersions = ["26.2"]
+    loaders = ["neoforge"]
+    environment = "client_only"
+    changelog = "Initial release. NeoForge port of Better Mount HUD by Lortseam (GPL-3.0)."
+    syncBodyFrom = rootProject.file("README.md").text
 }
